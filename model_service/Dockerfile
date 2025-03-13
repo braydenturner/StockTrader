@@ -7,6 +7,8 @@ WORKDIR /app
 # Copy your exported environment.yml into the container
 COPY shared_libs/ /app/shared_libs
 COPY model_service/ /app
+COPY .env/ /app
+COPY environment.yml /app
 
 # Create the Conda environment from environment.yml
 RUN conda env create -f environment.yml

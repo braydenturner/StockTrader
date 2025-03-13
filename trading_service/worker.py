@@ -1,4 +1,4 @@
-from shared_libs.tasks.celerey_app import celery_app
+from shared_libs.tasks.celery_app import celery_app
 
 if __name__ == "__main__":
     # Start Celery worker, listening for tasks in 'orders_queue'

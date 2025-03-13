@@ -29,7 +29,7 @@ services:
     depends_on:
       - rabbitmq
     environment:
-      - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//
+      CELERY_BROKER_URL: "${CELERY_BROKER_URL}"
 
       
   # App Service
@@ -42,7 +42,7 @@ services:
       - db
       - rabbitmq
     # environment:
-    #   DATABASE_URL: "postgresql://braydenturner:nedyarb94@db:5432/stocks"
+    #   DATABASE_URL: "${DATABASE_URL}"
     ports:
       - "8000:8000"  # Expose the app's port (adjust as needed)
 
@@ -57,7 +57,7 @@ services:
       - db
       - rabbitmq
     # environment:
-    #   DATABASE_URL: "postgresql://braydenturner:nedyarb94@db:5432/stocks"
+    #   DATABASE_URL: "${DATABASE_URL}"
 
 
   # Model Service
@@ -70,7 +70,7 @@ services:
       - db
       - rabbitmq
     # environment:
-    #   DATABASE_URL: "postgresql://braydenturner:nedyarb94@db:5432/stocks"
+    #   DATABASE_URL: "${DATABASE_URL}"
 
 
   # Trading Service
@@ -83,7 +83,7 @@ services:
       - db
       - rabbitmq
     # environment:
-    #   DATABASE_URL: "postgresql://braydenturner:nedyarb94@db:5432/stocks"
+    #   DATABASE_URL: "${DATABASE_URL}"
 
 
   # Analytics Service
@@ -96,7 +96,7 @@ services:
       - db
       - rabbitmq
     # environment:
-    #   DATABASE_URL: "postgresql://braydenturner:nedyarb94@db:5432/stocks"
+    #   DATABASE_URL: "${DATABASE_URL}"
 
 volumes:
   pgdata:

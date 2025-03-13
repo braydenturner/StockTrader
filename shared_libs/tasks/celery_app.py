@@ -1,9 +1,14 @@
 from celery import Celery
 from kombu import Queue
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+broker = os.getenv("CELERY_BROKER_URL")
 
 celery_app = Celery(
-    "my_celery_app",
-    broker="amqp://guest:guest@rabbitmq:5672//",  # RabbitMQ URL
+    "stock_app",
+    broker=broker,  # RabbitMQ URL
     backend="rpc://",  # or "redis://"
 )
 

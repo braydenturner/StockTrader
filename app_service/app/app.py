@@ -22,9 +22,15 @@ app.add_middleware(
 def read_root():
     return {"message": "Hello from FastAPI!"}
 
-@app.get("/api/data")
-def get_data():
-    print("/api/data")
+@app.get("/data/fetch")
+def fetch_data():
+    result = fetch_daily_data.delay()
+    
+    return {"data": result.get()}
+
+
+@app.post("/trade/execute")
+def make_trade():
     result = fetch_daily_data.delay()
     
     return {"data": result.get()}

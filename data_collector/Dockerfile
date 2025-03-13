@@ -7,11 +7,13 @@ WORKDIR /app
 # Copy your exported environment.yml into the container
 COPY shared_libs/ /app/shared_libs
 COPY data_collector/ /app
+COPY .env/ /app
+COPY environment.yml /app
 
 # Create the Conda environment from environment.yml
 RUN conda env create -f environment.yml
 
-SHELL ["conda", "run", "-n", "data_collector_env", "/bin/bash", "-c"]
+SHELL ["conda", "run", "-n", "trading_bot_env", "/bin/bash", "-c"]
 
 # Finally, run your script using the conda environment
-CMD ["conda", "run", "--no-capture-output", "-n", "data_collector_env", "python", "worker.py"]
+CMD ["conda", "run", "--no-capture-output", "-n", "trading_bot_env", "python", "worker.py"]
