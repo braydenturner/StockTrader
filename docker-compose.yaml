@@ -1,0 +1,102 @@
+version: "3.8"
+services:
+
+  # Rabbit Management Queue
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"  # Broker port
+      - "15672:15672" # Management UI
+
+  # Postgres DB
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  # Celery Service
+  celery_worker:
+    build:
+      context: .
+      dockerfile: ./celery_worker/Dockerfile
+    container_name: celery_worker
+    depends_on:
+      - rabbitmq
+    environment:
+      - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//
+
+      
+  # App Service
+  app_service:
+    build: 
+      context: .
+      dockerfile: ./app_service/Dockerfile
+    container_name: app-service
+    depends_on:
+      - db
+      - rabbitmq
+    # environment:
+    #   DATABASE_URL: "postgresql://braydenturner:nedyarb94@db:5432/stocks"
+    ports:
+      - "8000:8000"  # Expose the app's port (adjust as needed)
+
+
+  # Data Collector
+  data_collector:
+    build: 
+      context: .
+      dockerfile: ./data_collector/Dockerfile
+    container_name: data-collector
+    depends_on:
+      - db
+      - rabbitmq
+    # environment:
+    #   DATABASE_URL: "postgresql://braydenturner:nedyarb94@db:5432/stocks"
+
+
+  # Model Service
+  model_service:
+    build: 
+      context: .
+      dockerfile: ./model_service/Dockerfile
+    container_name: model-service 
+    depends_on:
+      - db
+      - rabbitmq
+    # environment:
+    #   DATABASE_URL: "postgresql://braydenturner:nedyarb94@db:5432/stocks"
+
+
+  # Trading Service
+  trading_service:
+    build: 
+      context: .
+      dockerfile: ./trading_service/Dockerfile
+    container_name: trading-service
+    depends_on:
+      - db
+      - rabbitmq
+    # environment:
+    #   DATABASE_URL: "postgresql://braydenturner:nedyarb94@db:5432/stocks"
+
+
+  # Analytics Service
+  analytics_service:
+    build: 
+      context: .
+      dockerfile: ./analytics_service/Dockerfile
+    container_name: analytics-service
+    depends_on:
+      - db
+      - rabbitmq
+    # environment:
+    #   DATABASE_URL: "postgresql://braydenturner:nedyarb94@db:5432/stocks"
+
+volumes:
+  pgdata:
