@@ -23,6 +23,14 @@ celery_app.conf.update(
     }
 )
 
+celery_app.conf.beat_schedule = {
+    "fetch-daily-data": {
+        "task": "data_collector.tasks.do_daily_fetch",
+        "schedule": 5 ,#86400.0,  # 24 hours in seconds
+        "args": ()            # optional arguments
+    },
+}
+
 celery_app.conf.task_queues = (
     Queue("orders_queue"),
     Queue("data_queue"),

@@ -47,7 +47,6 @@ services:
     # environment:
     #   DATABASE_URL: "${DATABASE_URL}"
 
-
   # Model Service
   model_service:
     build: 

@@ -20,4 +20,6 @@ ENV PYTHONPATH=/app
 
 # Finally, run Celery worker referencing the shared_libs Celery app
 CMD ["conda", "run", "--no-capture-output", "-n", "trading_bot_env", \
-     "celery", "-A", "data_collector.tasks", "worker", "--loglevel=INFO", "--queues=data_queue"]
+     "celery", "-A", "data_collector.tasks", "worker", "--beat", "--loglevel=INFO", "--queues=data_queue"]
+
+# Need to moe the beat to seperate process at some point. Can possible resue this container with new socker entry?
