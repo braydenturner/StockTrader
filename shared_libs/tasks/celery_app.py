@@ -23,6 +23,7 @@ celery_app.conf.update(
     }
 )
 
+# Beat
 celery_app.conf.beat_schedule = {
     "fetch-daily-data": {
         "task": "data_collector.tasks.do_daily_fetch",
