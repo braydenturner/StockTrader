@@ -19,16 +19,9 @@ celery_app.conf.update(
         "shared_libs.tasks.data.*":   {"queue": "data_queue"},
         "shared_libs.tasks.model.*":   {"queue": "model_queue"},
         "shared_libs.tasks.analytics.*":   {"queue": "analytics_queue"},
+        "data_collector.tasks.*":   {"queue": "data_queue"},
     }
 )
-
-celery_app.conf.beat_schedule = {
-    "fetch-daily-data": {
-        "task": "shared_libs.tasks.data.fetch_daily_data",
-        "schedule": 86400.0,  # 24 hours in seconds
-        "args": ()            # optional arguments
-    },
-}
 
 celery_app.conf.task_queues = (
     Queue("orders_queue"),

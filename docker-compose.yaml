@@ -19,18 +19,6 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-
-  # Celery Service
-  celery_worker:
-    build:
-      context: .
-      dockerfile: ./celery_worker/Dockerfile
-    container_name: celery_worker
-    depends_on:
-      - rabbitmq
-    environment:
-      CELERY_BROKER_URL: "${CELERY_BROKER_URL}"
-
       
   # App Service
   app_service:

@@ -13,7 +13,7 @@ COPY environment.yml /app
 # Create the Conda environment from environment.yml
 RUN conda env create -f environment.yml
 
-SHELL ["conda", "run", "-n", "model_service_env", "/bin/bash", "-c"]
+SHELL ["conda", "run", "-n", "trading_bot_env", "/bin/bash", "-c"]
 
-# Finally, run your script using the conda environment
-CMD ["conda", "run", "--no-capture-output", "-n", "model_service_env", "python", "worker.py"]
+# Optional: set PYTHONPATH so Python sees /app
+ENV PYTHONPATH=/app

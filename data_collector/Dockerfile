@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copy your exported environment.yml into the container
 COPY shared_libs/ /app/shared_libs
-COPY data_collector/ /app
+COPY data_collector/ /app/data_collector
 COPY .env/ /app
 COPY environment.yml /app
 
@@ -15,5 +15,9 @@ RUN conda env create -f environment.yml
 
 SHELL ["conda", "run", "-n", "trading_bot_env", "/bin/bash", "-c"]
 
-# Finally, run your script using the conda environment
-CMD ["conda", "run", "--no-capture-output", "-n", "trading_bot_env", "python", "worker.py"]
+# Optional: set PYTHONPATH so Python sees /app
+ENV PYTHONPATH=/app
+
+# Finally, run Celery worker referencing the shared_libs Celery app
+CMD ["conda", "run", "--no-capture-output", "-n", "trading_bot_env", \
+     "celery", "-A", "data_collector.tasks", "worker", "--loglevel=INFO", "--queues=data_queue"]
