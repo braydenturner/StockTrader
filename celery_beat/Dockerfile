@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copy your exported environment.yml into the container
 COPY shared_libs/ /app/shared_libs
-COPY data_collector/ /app/data_collector
+COPY celery_beat/ /app/celery_beat
 COPY .env/ /app
 COPY environment.yml /app
 
@@ -20,4 +20,4 @@ ENV PYTHONPATH=/app
 
 # Finally, run Celery worker referencing the shared_libs Celery app
 CMD ["conda", "run", "--no-capture-output", "-n", "trading_bot_env", \
-     "celery", "-A", "data_collector.tasks", "worker", "--loglevel=INFO", "--queues=data_queue"]
+     "celery", "-A", "celery_beat.celery_worker", "beat", "--loglevel=INFO"]
