@@ -1,55 +1,55 @@
 name: trading_bot_env
 channels:
-- conda-forge
+  - conda-forge
 dependencies:
-- bzip2=1.0.8
-- ca-certificates=2025.1.31
-- libexpat=2.6.4
-- libffi=3.4.2
-- liblzma=5.6.4
-- libsqlite=3.49.1
-- libzlib=1.3.1
-- ncurses=6.5
-- openssl=3.4.1
-- pip=25.0.1
-- python=3.11.11
-- readline=8.2
-- setuptools=75.8.2
-- tk=8.6.13
-- wheel=0.45.1
-- pip:
-  - amqp==5.3.1
-  - annotated-types==0.7.0
-  - anyio==4.8.0
-  - asyncio==3.4.3
-  - billiard==4.2.1
-  - celery==5.4.0
-  - click==8.1.8
-  - click-didyoumean==0.3.1
-  - click-plugins==1.1.1
-  - click-repl==0.3.0
-  - fastapi==0.115.11
-  - h11==0.14.0
-  - idna==3.10
-  - kombu==5.4.2
-  - numpy==2.2.4
-  - pandas==2.2.3
-  - prompt-toolkit==3.0.50
-  - psycopg2-binary==2.9.10
-  - pydantic==2.10.6
-  - pydantic-core==2.27.2
-  - python-dateutil==2.9.0.post0
-  - python-dotenv==1.0.1
-  - pytz==2025.1
-  - pyyaml==6.0.2
-  - six==1.17.0
-  - sniffio==1.3.1
-  - sqlalchemy==2.0.39
-  - sqlmodel==0.0.24
-  - starlette==0.46.1
-  - typing-extensions==4.12.2
-  - tzdata==2025.1
-  - uvicorn==0.34.0
-  - vine==5.1.0
-  - wcwidth==0.2.13
-prefix: /Users/braydenturner/projects/Personal/trading_bot/trading_bot_env
+  - bzip2=1.0.8
+  - ca-certificates=2025.1.31
+  - libexpat=2.6.4
+  - libffi=3.4.2
+  - liblzma=5.6.4
+  - libsqlite=3.49.1
+  - libzlib=1.3.1
+  - ncurses=6.5
+  - openssl=3.4.1
+  - pip=25.0.1
+  - python=3.11.11
+  - readline=8.2
+  - setuptools=75.8.2
+  - tk=8.6.13
+  - wheel=0.45.1
+  - pip:
+      - amqp==5.3.1
+      - annotated-types==0.7.0
+      - anyio==4.8.0
+      - asyncio==3.4.3
+      - billiard==4.2.1
+      - celery==5.4.0
+      - click==8.1.8
+      - click-didyoumean==0.3.1
+      - click-plugins==1.1.1
+      - click-repl==0.3.0
+      - fastapi==0.115.11
+      - h11==0.14.0
+      - idna==3.10
+      - kombu==5.4.2
+      - numpy==2.2.4
+      - pandas==2.2.3
+      - prompt-toolkit==3.0.50
+      - psycopg2-binary==2.9.10
+      - pydantic==2.10.6
+      - pydantic-core==2.27.2
+      - python-dateutil==2.9.0.post0
+      - python-dotenv==1.0.1
+      - pytz==2025.1
+      - pyyaml==6.0.2
+      - six==1.17.0
+      - sniffio==1.3.1
+      - sqlalchemy==2.0.39
+      - sqlmodel==0.0.24
+      - starlette==0.46.1
+      - typing-extensions==4.12.2
+      - tzdata==2025.1
+      - uvicorn==0.34.0
+      - vine==5.1.0
+      - wcwidth==0.2.13
+prefix: /Users/braydenturner/miniconda3/envs/trading_bot_env
